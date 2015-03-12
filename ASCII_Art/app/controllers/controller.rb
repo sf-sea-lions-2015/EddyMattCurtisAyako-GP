@@ -1,29 +1,24 @@
 class Controller
   def initialize(params)
-    @model = params[:model]
-    @list = params[:list]
+    @name = params[:name]
+    @ascii_art = params[:ascii_art]
     @view = params[:view].new
-    task_data = params[:task_data]
-    command = params[:command ]
+    command = params[:command]
+    image_name = params[:image_name]
 
     begin
-      task_data ? send(command, task_data) : send(command)
+      image_name ? send(command, image_name) : send(command)
     rescue NoMethodError => err
       @view.render('Please enter a valid command.')
       raise err
     end
   end
 
-  # def list
-  #   Task.all.each do |task|
-  #     @view.render("#{task.id}. #{task.name}")
-  #   end
-  # end
-
-  def add(image)
-    Image.create(name: image)
-
-    # image.errors.full_messages.each { |message| @view.render message } if !image.save
+  def print_image(image_name=@image_name)
+    # puts "$$$$" * 50
+    @view.render(Image.find_by(name: image_name).ascii_art)
   end
-
+  # command = print_image
 end
+
+# print_image("Pink Panther")
