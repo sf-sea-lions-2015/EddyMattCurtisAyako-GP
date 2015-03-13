@@ -20,6 +20,9 @@ class Controller
   end
 
   def print_stats(image_name)
-    @view.render(Image.find_by(name: image_name).ratings.coolness)
+    coolness = (Rating.find_by(image_id: Image.find_by(name: image_name).id)).coolness
+    complexity = (Rating.find_by(image_id: Image.find_by(name: image_name).id)).complexity
+    humor = (Rating.find_by(image_id: Image.find_by(name: image_name).id)).humor
+    @view.render("Coolness: #{coolness} \nComplexity: #{complexity} \nHumor: #{humor}")
   end
 end
