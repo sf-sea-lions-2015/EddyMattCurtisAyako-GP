@@ -16,5 +16,10 @@ class Controller
 
   def print_image(image_name=@image_name)
     @view.render(Image.find_by(name: image_name).ascii_art)
+    print_stats(image_name)
+  end
+
+  def print_stats(image_name)
+    @view.render(Image.find_by(name: image_name).ratings.coolness)
   end
 end
