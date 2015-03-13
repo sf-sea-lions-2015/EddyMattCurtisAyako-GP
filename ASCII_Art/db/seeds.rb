@@ -24,3 +24,5 @@
          `-.____/
  ")
 
+
+Rating.create(image_id: 1, coolness: 6, humor: 3, complexity: 5, user_id: 3)

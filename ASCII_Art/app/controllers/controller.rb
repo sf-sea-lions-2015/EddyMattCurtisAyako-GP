@@ -15,10 +15,6 @@ class Controller
   end
 
   def print_image(image_name=@image_name)
-    # puts "$$$$" * 50
     @view.render(Image.find_by(name: image_name).ascii_art)
   end
-  # command = print_image
 end
-
-# print_image("Pink Panther")
